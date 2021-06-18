@@ -1,0 +1,13 @@
+keyfile="ppDB.keyx"
+dbfile="ppDB.kdbx"
+localconf="local.ini"
+conf="roam.ini"
+
+conf_base="$HOME/Dropbox"
+
+keyfile_path="$conf_base/main_keepass_db/$keyfile"
+dbfile_path="$conf_base/main_keepass_db/$dbfile"
+localconf_path="$conf_base/shared_keepass/conf/$localconf"
+conf_path="$conf_base/shared_keepass/conf/$conf"
+get_master_key_cmd="/usr/bin/secret-tool lookup keepass db"
+host_localconf_path="$HOME/snap/keepassxc/1522/.config/keepassxc/keepassxc.ini"
