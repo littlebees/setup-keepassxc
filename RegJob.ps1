@@ -24,5 +24,9 @@ New-Item -Path $home\MyKeepassXC -ItemType directory
 Copy-Item -Path KeepassXCEnv.ps1 -Destination $home\MyKeepassXC
 Copy-Item -Path StartCustomKeepass.ps1 -Destination $home\MyKeepassXC
 
-$trigger = New-JobTrigger -AtStartup
-Register-ScheduledJob -Trigger $trigger -FilePath $home\MyKeepassXC\StartCustomKeepass.ps1 -Name StartCustomKeepass
+$WshShell = New-Object -comObject WScript.Shell
+$Shortcut = $WshShell.CreateShortcut("$home\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\mykeepassxc.lnk")
+$Shortcut.TargetPath = "C:\Windows\System32\cmd.exe"
+$Shortcut.Arguments = "/c start /min `"`" powershell -WindowStyle Hidden -Command `"$home\MyKeepassXC\StartCustomKeepass.ps1`""
+$Shortcut.IconLocation = "C:\Program Files\KeePassXC\KeePassXC.exe"
+$Shortcut.save()
